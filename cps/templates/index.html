@@ -2,7 +2,7 @@
 {% block body %}
 {% if g.user.show_detail_random() %}
 <div class="discover">
-  <h2>{{_('Discover (Random Books)')}}</h2>
+  <h2 class="random-books">{{_('Discover (Random Books)')}}</h2>
   <div class="row">
 
     {% for entry in random %}
@@ -17,7 +17,9 @@
           </a>
       </div>
       <div class="meta">
-        <p class="title">{{entry.title|shortentitle}}</p>
+        <a href="{{ url_for('show_book', book_id=entry.id) }}" data-toggle="modal" data-target="#bookDetailsModal" data-remote="false">
+          <p class="title">{{entry.title|shortentitle}}</p>
+        </a>
         <p class="author">
           {% for author in entry.authors %}
             <a href="{{url_for('author', book_id=author.id) }}">{{author.name.replace('|',',')|shortentitle(30)}}</a>
@@ -60,7 +62,9 @@
           </a>
       </div>
       <div class="meta">
-        <p class="title">{{entry.title|shortentitle}}</p>
+        <a href="{{ url_for('show_book', book_id=entry.id) }}" data-toggle="modal" data-target="#bookDetailsModal" data-remote="false">
+          <p class="title">{{entry.title|shortentitle}}</p>
+        </a>
         <p class="author">
           {% for author in entry.authors %}
             <a href="{{url_for('author', book_id=author.id) }}">{{author.name.replace('|',',')|shortentitle(30)}}</a>
